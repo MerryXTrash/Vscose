@@ -13,9 +13,9 @@ local Window = Fluent:CreateWindow({
 })
 
 local Tabs = {
-    Log = Window:AddTab({ Title = "Update Log", Icon = "calendar-arrow-up" }),
-    General = Window:AddTab({ Title = "General", Icon = "align-left" }),
-    Misc = Window:AddTab({ Title = "Misc", Icon = "align-left" }),
+    Log = Window:AddTab({ Title = "Update Log", Icon = "hash" }),
+    General = Window:AddTab({ Title = "General", Icon = "table-of-contents" }),
+    Misc = Window:AddTab({ Title = "Miscellaneous", Icon = "align-left" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -29,9 +29,9 @@ do
         Duration = 5
     })
 
-    Tabs.General:AddParagraph({
-        Title = "Paragraph",
-        Content = "This is a paragraph.\nSecond line!"
+    Tabs.Log:AddParagraph({
+        Title = "+ Add",
+        Content = "Jigoku Event"
     })
 
     Tabs.General:AddButton({
