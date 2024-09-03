@@ -1,82 +1,50 @@
--- ตัวแปรสำหรับเก็บค่าการตั้งค่าเริ่มต้น
-local Lighting = game:GetService("Lighting")
+-- สร้างโฟลเดอร์ใน Workspace
+local folder = Instance.new("Folder")
+folder.Name = "HighlightsFolder"
+folder.Parent = game.Workspace
 
--- เก็บค่าการตั้งค่าเริ่มต้น
-local defaultSettings = {
-    ClockTime = Lighting.ClockTime,
-    Ambient = Lighting.Ambient,
-    Brightness = Lighting.Brightness,
-    ColorCorrection = nil
-}
+-- สร้าง Highlight แม่แบบ
+local highlightTemplate = Instance.new("Highlight")
+highlightTemplate.Name = "HighlightTemplate"
+highlightTemplate.Enabled = true
+highlightTemplate.FillTransparency = 0.5
+highlightTemplate.OutlineTransparency = 0
+highlightTemplate.Parent = folder
 
--- ตรวจสอบและเพิ่ม ColorCorrectionEffect ถ้าไม่มีอยู่
-local function storeDefaultColorCorrection()
-    local ColorCorrection = Lighting:FindFirstChild("ColorCorrectionEffect")
-    if ColorCorrection then
-        defaultSettings.ColorCorrection = {
-            Brightness = ColorCorrection.Brightness,
-            Contrast = ColorCorrection.Contrast,
-            TintColor = ColorCorrection.TintColor,
-            Enabled = ColorCorrection.Enabled
-        }
-    end
+-- ฟังก์ชันในการตั้งค่า Highlight สำหรับ Mob
+local function setupHighlightForMob(mob)
+    local mobHighlight = highlightTemplate:Clone()
+    mobHighlight.Name = "MobESP"
+    mobHighlight.FillColor = Color3.fromRGB(255, 0, 0)
+    mobHighlight.FillTransparency = 0.8
+    mobHighlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    mobHighlight.Parent = mob
 end
 
--- ฟังก์ชันเพื่อเปิดการใช้งาน fullbright
-local function EnableFullbright()
-    -- บันทึกการตั้งค่าเริ่มต้นของ ColorCorrectionEffect
-    storeDefaultColorCorrection()
-    
-    -- ตั้งค่าแสงในเกมสำหรับ fullbright
-    Lighting.ClockTime = 12
-    Lighting.Ambient = Color3.fromRGB(255, 255, 255)
-    Lighting.Brightness = 10
-
-    -- เพิ่ม ColorCorrectionEffect ถ้าไม่มีอยู่
-    local ColorCorrection = Lighting:FindFirstChild("ColorCorrectionEffect")
-    if not ColorCorrection then
-        ColorCorrection = Instance.new("ColorCorrectionEffect")
-        ColorCorrection.Name = "ColorCorrectionEffect"
-        ColorCorrection.Parent = Lighting
-    end
-
-    -- ตั้งค่าการปรับสี
-    ColorCorrection.Brightness = 0.2
-    ColorCorrection.Contrast = 0
-    ColorCorrection.TintColor = Color3.fromRGB(255, 255, 255)
-    ColorCorrection.Enabled = true
+-- ฟังก์ชันในการตั้งค่า Highlight สำหรับ Player
+local function setupHighlightForPlayer(player)
+    local character = player.Character or player.CharacterAdded:Wait()
+    local playerHighlight = highlightTemplate:Clone()
+    playerHighlight.Name = "PlayerESP"
+    playerHighlight.FillColor = Color3.fromRGB(0, 0, 255)
+    playerHighlight.FillTransparency = 0.5
+    playerHighlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    playerHighlight.Parent = character
 end
 
--- ฟังก์ชันเพื่อปิดการใช้งาน fullbright
-local function DisableFullbright()
-    -- คืนค่าแสงในเกมกลับสู่ค่าเริ่มต้น
-    Lighting.ClockTime = defaultSettings.ClockTime
-    Lighting.Ambient = defaultSettings.Ambient
-    Lighting.Brightness = defaultSettings.Brightness
-
-    -- คืนค่า ColorCorrectionEffect ถ้ามีอยู่
-    local ColorCorrection = Lighting:FindFirstChild("ColorCorrectionEffect")
-    if ColorCorrection then
-        ColorCorrection.Brightness = defaultSettings.ColorCorrection.Brightness
-        ColorCorrection.Contrast = defaultSettings.ColorCorrection.Contrast
-        ColorCorrection.TintColor = defaultSettings.ColorCorrection.TintColor
-        ColorCorrection.Enabled = defaultSettings.ColorCorrection.Enabled
-    end
+-- ตั้งค่า Highlight สำหรับผู้เล่นที่มีอยู่แล้ว
+local Players = game.Players
+for _, player in pairs(Players:GetPlayers()) do
+    setupHighlightForPlayer(player)
 end
 
--- การตั้งค่าตัวแปร global
-_G.FULLBRIGHT = true -- เปิดใช้งาน fullbright
+-- ฟังก์ชันที่จะทำงานเมื่อผู้เล่นใหม่เข้ามา
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        setupHighlightForPlayer(player)
+    end)
+end)
 
--- ตรวจสอบค่า _G.FULLBRIGHT และปรับการตั้งค่าตามนั้น
-local function UpdateLighting()
-    if _G.FULLBRIGHT then
-        EnableFullbright()
-        print("Fullbright ถูกเปิดใช้งาน")
-    else
-        DisableFullbright()
-        print("Fullbright ถูกปิดใช้งาน")
-    end
-end
-
--- เรียกใช้ฟังก์ชันเพื่ออัปเดตการตั้งค่าแสง
-UpdateLighting()
+-- ตัวอย่างการใช้ฟังก์ชันกับ Mob (ถ้ามี)
+local mob = game.Workspace:WaitForChild("object")
+setupHighlightForMob(mob)
