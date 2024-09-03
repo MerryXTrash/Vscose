@@ -29,7 +29,7 @@ UICorner.CornerRadius = UDim.new(0.1, 0)  -- สามารถปรับเ�
 
 -- Adding UIStroke (สำหรับขอบ)
 UIStroke.Parent = ImageButton
-UIStroke.Color = Color3.fromRGB(138, 43, 226)  -- สีขอบ (สีฟ้า)
+UIStroke.Color = Color3.fromRGB(85, 0, 255)
 UIStroke.Thickness = 2  -- ความหนาของขอบ
 
 ImageButton.MouseButton1Down:Connect(function()
