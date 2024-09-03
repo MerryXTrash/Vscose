@@ -10,7 +10,6 @@ local OutlineTransparency = 0
 
 local CoreGui = game:FindService("CoreGui")
 local Players = game:FindService("Players")
-local lp = Players.LocalPlayer
 local connections = {}
 
 local Storage = Instance.new("Folder")
@@ -21,7 +20,9 @@ local Enabled = true -- Variable to toggle highlighting on and off
 
 local function ToggleHighlighting(state)
     Enabled = state
+    
     if not Enabled then
+        -- Remove all highlights and disconnect events
         for _, highlight in ipairs(Storage:GetChildren()) do
             highlight:Destroy()
         end
@@ -30,6 +31,7 @@ local function ToggleHighlighting(state)
             connections[plr] = nil
         end
     else
+        -- Apply highlighting to all players
         for _, plr in ipairs(Players:GetPlayers()) do
             Highlight(plr)
         end
