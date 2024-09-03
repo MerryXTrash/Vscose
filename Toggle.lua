@@ -34,4 +34,4 @@ UIStroke.Thickness = 2  -- ความหนาของขอบ
 
 ImageButton.MouseButton1Down:Connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true, "RightShift", false, game)
-end)
+    end)
