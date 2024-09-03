@@ -20,6 +20,8 @@ ImageButton.Position = UDim2.new(0.95, -95, 0, 0)  -- ตำแหน่ง: ม
 
 ImageButton.Image = "rbxassetid://18982309971"  -- ใส่ ID ของภาพที่คุณต้องการใช้
 ImageButton.ImageTransparency = 0.000
+ImageButton.Active = true
+ImageButton.Draggable = true
 
 -- Adding UICorner (สำหรับมุมโค้ง)
 UICorner.Parent = ImageButton
