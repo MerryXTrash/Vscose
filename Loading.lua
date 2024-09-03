@@ -14,7 +14,7 @@ local Window = Fluent:CreateWindow({
 
 local Tabs = {
     Log = Window:AddTab({ Title = "Update Log", Icon = "calendar-arrow-up" }),
-    General = Window:AddTab({ Title = "General", Icon = "house" }),
+    General = Window:AddTab({ Title = "General", Icon = "align-left" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "align-left" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
