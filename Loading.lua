@@ -36,8 +36,8 @@ do
     })
 
     Tabs.General:AddButton({
-        Title = "Button",
-        Description = "Very important button",
+        Title = "Skip",
+        Description = "Skip Part",
         Callback = function()
             Window:Dialog({
                 Title = "Skip",
