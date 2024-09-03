@@ -1,6 +1,5 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
 
 local Window = Fluent:CreateWindow({
@@ -41,7 +40,7 @@ do
     })
 
     Tabs.General:AddButton({
-        Title = "Skip",
+        Title = "Continue",
         Description = "Continue",
         Callback = function()
             Window:Dialog({
@@ -131,14 +130,11 @@ do
     end)
 
     SaveManager:SetLibrary(Fluent)
-    InterfaceManager:SetLibrary(Fluent)
 
     SaveManager:IgnoreThemeSettings()
     SaveManager:SetIgnoreIndexes({})
-    InterfaceManager:SetFolder("FluentScriptHub")
     SaveManager:SetFolder("FluentScriptHub/specific-game")
 
-    InterfaceManager:BuildInterfaceSection(Tabs.Settings)
     SaveManager:BuildConfigSection(Tabs.Settings)
 
     Window:SelectTab(1)
