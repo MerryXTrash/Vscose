@@ -29,11 +29,15 @@ do
         SubContent = "ขอบคุณที่ใช้สคริปต์น่ะค่ะ จุ๊บๆ <3",
         Duration = 5
     })
-
+    
     Tabs.Log:AddParagraph({
         Title = "+ Add",
         Content = "Jigoku Event"
     })
+
+    Tabs.General:AddParagraph({
+        Title = "Book 1",
+        Content = "Chapter 1",
 
     Tabs.General:AddButton({
         Title = "Skip",
