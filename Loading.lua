@@ -35,17 +35,22 @@ do
         Content = "Jigoku Event"
     })
 
+    Tabs.Log:AddParagraph({
+        Title = "+ Add",
+        Content = "Visual"
+    })
+
     Tabs.General:AddParagraph({
         Title = "Book 1",
         Content = "Chapter 1"
     })
 
     Tabs.General:AddButton({
-        Title = "Continue",
+        Title = "Skip",
         Description = "Continue",
         Callback = function()
             Window:Dialog({
-                Title = "Fullbright",
+                Title = "Skip",
                 Content = "Do you want to skip this Part?",
                 Buttons = {
                     {
