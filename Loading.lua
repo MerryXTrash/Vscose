@@ -65,11 +65,15 @@ do
         end
     })
 
-    local Toggle = Tabs.General:AddToggle("MyToggle", {Title = "Toggle", Default = false})
+local Toggle = Tabs.Misc:AddToggle("MyToggle", {Title = "Fullbright", Default = false})
 
-    Toggle:OnChanged(function()
-        print("Toggle changed:", Options.MyToggle.Value)
-    end)
+Toggle:OnChanged(function(value)
+    if value then
+        print("Toggle ถูกเปิดใช้งาน")
+    else
+        print("Toggle ถูกปิดใช้งาน")
+    end
+end)
 
     Options.MyToggle:SetValue(false)
 
