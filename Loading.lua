@@ -65,14 +65,54 @@ do
         end
     })
 
+ Tabs.Misc:AddButton({
+        Title = "Skip",
+        Description = "Skip Part",
+        Callback = function()
+            Window:Dialog({
+                Title = "Skip",
+                Content = "Do you want to Skip this Part?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                                local Time = game.Lighting
+    Time.ClockTime = 12
+    Time.Ambient = Color3.new(1, 1, 1)
+    Time.Brightness = 10
+    ColorCorrection.Brightness = 0.2
+    ColorCorrection.Contrast = 0
+    ColorCorrection.TintColor = Color3.new(1, 1, 1)
+    ColorCorrection.Enable = true
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("NO")
+                        end
+                    }
+                }
+            })
+        end
+    })
+    
 local Toggle = Tabs.Misc:AddToggle("MyToggle", {Title = "Fullbright", Default = false})
 
 Toggle:OnChanged(function(value)
     if value then
-        print("Toggle ถูกเปิดใช้งาน")
+    _G.FB = true
+    local Time = game.Lighting
+    Time.ClockTime = 12
+    Time.Ambient = Color3.new(1, 1, 1)
+    Time.Brightness = 10
+    ColorCorrection.Brightness = 0.2
+    ColorCorrection.Contrast = 0
+    ColorCorrection.TintColor = Color3.new(1, 1, 1)
+    ColorCorrection.Enable = true
+end)
     else
-        print("Toggle ถูกปิดใช้งาน")
-    end
+    _G.FB = false
 end)
 
     Options.MyToggle:SetValue(false)
