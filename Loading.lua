@@ -3,12 +3,12 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Fluent " .. Fluent.Version,
-    SubTitle = "by dawid",
+    Title = "Xervice HUB " Beta,
+    SubTitle = "by JajaEngkubb",
     TabWidth = 160,
-    Size = UDim2.fromOffset(300, 300),
+    Size = UDim2.fromOffset(460, 300),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Dark",
+    Theme = "Amethyst",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
@@ -22,9 +22,9 @@ local Options = Fluent.Options
 
 do
     Fluent:Notify({
-        Title = "Notification",
-        Content = "This is a notification",
-        SubContent = "SubContent", -- Optional
+        Title = "JajaCutecute",
+        Content = "Thank for Useing My script <3",
+        SubContent = "ขอบคุณทีใช้สคริปต์น่ะค่ะจุ๊บๆๆๆๆ <3", -- Optional
         Duration = 5 -- Set to nil to make the notification not disappear
     })
 
