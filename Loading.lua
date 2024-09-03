@@ -2,81 +2,6 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
 
-local FillColor = Color3.fromRGB(175, 25, 255)
-local DepthMode = "AlwaysOnTop"
-local FillTransparency = 0.5
-local OutlineColor = Color3.fromRGB(255, 255, 255)
-local OutlineTransparency = 0
-
-local CoreGui = game:FindService("CoreGui")
-local Players = game:FindService("Players")
-local connections = {}
-
-local Storage = Instance.new("Folder")
-Storage.Parent = CoreGui
-Storage.Name = "Highlight_Storage"
-
-local Enabled = true -- Variable to toggle highlighting on and off
-
-local function ToggleHighlighting(state)
-    Enabled = state
-    
-    if not Enabled then
-        -- Remove all highlights and disconnect events
-        for _, highlight in ipairs(Storage:GetChildren()) do
-            highlight:Destroy()
-        end
-        for plr, conn in pairs(connections) do
-            conn:Disconnect()
-            connections[plr] = nil
-        end
-    else
-        -- Apply highlighting to all players
-        for _, plr in ipairs(Players:GetPlayers()) do
-            Highlight(plr)
-        end
-    end
-end
-
-local function Highlight(plr)
-    if not Enabled then return end
-    
-    local highlight = Instance.new("Highlight")
-    highlight.Name = plr.Name
-    highlight.FillColor = FillColor
-    highlight.DepthMode = DepthMode
-    highlight.FillTransparency = FillTransparency
-    highlight.OutlineColor = OutlineColor
-    highlight.OutlineTransparency = OutlineTransparency
-    highlight.Parent = Storage
-    
-    local plrchar = plr.Character
-    if plrchar then
-        highlight.Adornee = plrchar
-    end
-
-    connections[plr] = plr.CharacterAdded:Connect(function(char)
-        highlight.Adornee = char
-    end)
-end
-
-Players.PlayerAdded:Connect(Highlight)
-
-for _, plr in ipairs(Players:GetPlayers()) do
-    Highlight(plr)
-end
-
-Players.PlayerRemoving:Connect(function(plr)
-    local plrname = plr.Name
-    if Storage:FindFirstChild(plrname) then
-        Storage[plrname]:Destroy()
-    end
-    if connections[plr] then
-        connections[plr]:Disconnect()
-        connections[plr] = nil
-    end
-end)
-
 local Window = Fluent:CreateWindow({
     Title = "Xervice HUB Beta",
     SubTitle = "by JajaEngkubb",
@@ -90,6 +15,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Log = Window:AddTab({ Title = "Update Log", Icon = "hash" }),
     General = Window:AddTab({ Title = "General", Icon = "align-left" }),
+    ESP = Window:AddTab({ Title = "Visual", Icon = "eye" }),
     Misc = Window:AddTab({ Title = "Miscellaneous", Icon = "layout-grid" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
