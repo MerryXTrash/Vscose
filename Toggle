@@ -18,7 +18,7 @@ ImageButton.BackgroundTransparency = 1.000
 ImageButton.Size = UDim2.new(0.07, 0, 0.15, 0)  -- ขนาดปุ่ม: 10% ของขนาดหน้าจอ
 ImageButton.Position = UDim2.new(0.95, -95, 0, 0)  -- ตำแหน่ง: มุมขวาบนของหน้าจอ โดยมีการเลื่อนเข้าไป 100 pixels
 
-ImageButton.Image = "rbxassetid://18982309971"  -- ใส่ ID ของภาพที่คุณต้องการใช้
+ImageButton.Image = "rbxassetid://134754092492795"  -- ใส่ ID ของภาพที่คุณต้องการใช้
 ImageButton.ImageTransparency = 0.000
 ImageButton.Active = true
 ImageButton.Draggable = true
