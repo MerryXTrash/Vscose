@@ -46,5 +46,8 @@ Players.PlayerAdded:Connect(function(player)
 end)
 
 -- ตัวอย่างการใช้ฟังก์ชันกับ Mob (ถ้ามี)
-local mob = game.Workspace:WaitForChild("object")
+--b1c2
+local mob = game.Workspace.GameAI:WaitForChild("AI")
+local Kusonoki = game.Workspace.GameAI:WaitForChild("Kusonoki")
 setupHighlightForMob(mob)
+setupHighlightForMob(Kusonoki)
