@@ -41,7 +41,7 @@ do
     })
 
     Tabs.General:AddButton({
-        Title = "Continue",
+        Title = "Skip",
         Description = "Continue",
         Callback = function()
             Window:Dialog({
