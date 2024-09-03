@@ -3,18 +3,17 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Xervice HUB " Beta,
+    Title = "Xervice HUB Beta",
     SubTitle = "by JajaEngkubb",
     TabWidth = 160,
     Size = UDim2.fromOffset(460, 300),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Acrylic = true,
     Theme = "Amethyst",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+    MinimizeKey = Enum.KeyCode.LeftControl
 })
 
---Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "house" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "house-plus" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "align-left" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
@@ -24,38 +23,34 @@ local Options = Fluent.Options
 do
     Fluent:Notify({
         Title = "JajaCutecute",
-        Content = "Thank for Useing My script <3",
-        SubContent = "ขอบคุณทีใช้สคริปต์น่ะค่ะจุ๊บๆๆๆๆ <3", -- Optional
-        Duration = 5 -- Set to nil to make the notification not disappear
+        Content = "Thank you for using my script <3",
+        SubContent = "ขอบคุณที่ใช้สคริปต์ค่ะ จุ๊บๆ <3",
+        Duration = 5
     })
-
-
 
     Tabs.Main:AddParagraph({
         Title = "Paragraph",
         Content = "This is a paragraph.\nSecond line!"
     })
 
-
-
     Tabs.Main:AddButton({
         Title = "Button",
         Description = "Very important button",
         Callback = function()
             Window:Dialog({
-                Title = "Title",
+                Title = "Dialog Title",
                 Content = "This is a dialog",
                 Buttons = {
                     {
                         Title = "Confirm",
                         Callback = function()
-                            print("Confirmed the dialog.")
+                            print("Dialog confirmed.")
                         end
                     },
                     {
                         Title = "Cancel",
                         Callback = function()
-                            print("Cancelled the dialog.")
+                            print("Dialog cancelled.")
                         end
                     }
                 }
@@ -63,9 +58,7 @@ do
         end
     })
 
-
-
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false})
 
     Toggle:OnChanged(function()
         print("Toggle changed:", Options.MyToggle.Value)
@@ -73,8 +66,6 @@ do
 
     Options.MyToggle:SetValue(false)
 
-
-    
     local Slider = Tabs.Main:AddSlider("Slider", {
         Title = "Slider",
         Description = "This is a slider",
@@ -93,13 +84,11 @@ do
 
     Slider:SetValue(3)
 
-
-
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Dropdown",
         Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
         Multi = false,
-        Default = 1,
+        Default = 1
     })
 
     Dropdown:SetValue("four")
@@ -108,14 +97,12 @@ do
         print("Dropdown changed:", Value)
     end)
 
-
-    
     local MultiDropdown = Tabs.Main:AddDropdown("MultiDropdown", {
-        Title = "Dropdown",
+        Title = "MultiDropdown",
         Description = "You can select multiple values.",
         Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
         Multi = true,
-        Default = {"seven", "twelve"},
+        Default = {"seven", "twelve"}
     })
 
     MultiDropdown:SetValue({
@@ -129,10 +116,8 @@ do
         for Value, State in next, Value do
             table.insert(Values, Value)
         end
-        print("Mutlidropdown changed:", table.concat(Values, ", "))
+        print("MultiDropdown changed:", table.concat(Values, ", "))
     end)
-
-
 
     local Colorpicker = Tabs.Main:AddColorpicker("Colorpicker", {
         Title = "Colorpicker",
@@ -142,14 +127,12 @@ do
     Colorpicker:OnChanged(function()
         print("Colorpicker changed:", Colorpicker.Value)
     end)
-    
+
     Colorpicker:SetValueRGB(Color3.fromRGB(0, 255, 140))
 
-
-
     local TColorpicker = Tabs.Main:AddColorpicker("TransparencyColorpicker", {
-        Title = "Colorpicker",
-        Description = "but you can change the transparency.",
+        Title = "Transparency Colorpicker",
+        Description = "Change color and transparency.",
         Transparency = 0,
         Default = Color3.fromRGB(96, 205, 255)
     })
@@ -161,26 +144,18 @@ do
         )
     end)
 
-
-
     local Keybind = Tabs.Main:AddKeybind("Keybind", {
         Title = "KeyBind",
-        Mode = "Toggle", -- Always, Toggle, Hold
-        Default = "LeftControl", -- String as the name of the keybind (MB1, MB2 for mouse buttons)
-
-        -- Occurs when the keybind is clicked, Value is `true`/`false`
+        Mode = "Toggle",
+        Default = "LeftControl",
         Callback = function(Value)
             print("Keybind clicked!", Value)
         end,
-
-        -- Occurs when the keybind itself is changed, `New` is a KeyCode Enum OR a UserInputType Enum
         ChangedCallback = function(New)
             print("Keybind changed!", New)
         end
     })
 
-    -- OnClick is only fired when you press the keybind and the mode is Toggle
-    -- Otherwise, you will have to use Keybind:GetState()
     Keybind:OnClick(function()
         print("Keybind clicked:", Keybind:GetState())
     end)
@@ -192,26 +167,22 @@ do
     task.spawn(function()
         while true do
             wait(1)
-
-            -- example for checking if a keybind is being pressed
             local state = Keybind:GetState()
             if state then
                 print("Keybind is being held down")
             end
-
             if Fluent.Unloaded then break end
         end
     end)
 
-    Keybind:SetValue("MB2", "Toggle") -- Sets keybind to MB2, mode to Hold
-
+    Keybind:SetValue("MB2", "Toggle")
 
     local Input = Tabs.Main:AddInput("Input", {
         Title = "Input",
         Default = "Default",
         Placeholder = "Placeholder",
-        Numeric = false, -- Only allows numbers
-        Finished = false, -- Only calls callback when you press enter
+        Numeric = false,
+        Finished = false,
         Callback = function(Value)
             print("Input changed:", Value)
         end
@@ -222,31 +193,16 @@ do
     end)
 end
 
-
--- Addons:
--- SaveManager (Allows you to have a configuration system)
--- InterfaceManager (Allows you to have a interface managment system)
-
--- Hand the library over to our managers
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
 
--- Ignore keys that are used by ThemeManager.
--- (we dont want configs to save themes, do we?)
 SaveManager:IgnoreThemeSettings()
-
--- You can add indexes of elements the save manager should ignore
 SaveManager:SetIgnoreIndexes({})
-
--- use case for doing it this way:
--- a script hub could have themes in a global folder
--- and game configs in a separate folder per game
 InterfaceManager:SetFolder("FluentScriptHub")
 SaveManager:SetFolder("FluentScriptHub/specific-game")
 
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 SaveManager:BuildConfigSection(Tabs.Settings)
-
 
 Window:SelectTab(1)
 
@@ -256,6 +212,4 @@ Fluent:Notify({
     Duration = 8
 })
 
--- You can use the SaveManager:LoadAutoloadConfig() to load a config
--- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
