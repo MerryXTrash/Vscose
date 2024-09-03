@@ -41,12 +41,12 @@ do
     })
 
     Tabs.General:AddButton({
-        Title = "Skip",
-        Description = "Skip Part",
+        Title = "Continue",
+        Description = "Continue",
         Callback = function()
             Window:Dialog({
-                Title = "Skip",
-                Content = "Do you want to Skip this Part?",
+                Title = "Fullbright",
+                Content = "Do you want to skip shis Part?",
                 Buttons = {
                     {
                         Title = "Yes",
@@ -66,12 +66,12 @@ do
     })
 
  Tabs.Misc:AddButton({
-        Title = "Skip",
-        Description = "Skip Part",
+        Title = "Fullbright",
+        Description = "If you Scared a Dark",
         Callback = function()
             Window:Dialog({
-                Title = "Skip",
-                Content = "Do you want to Skip this Part?",
+                Title = "Fullbright",
+                Content = "Do you want to Open Fullbright?",
                 Buttons = {
                     {
                         Title = "Yes",
