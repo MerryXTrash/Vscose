@@ -15,8 +15,8 @@ local Window = Fluent:CreateWindow({
 
 local Tabs = {
     Log = Window:AddTab({ Title = "Update Log", Icon = "hash" }),
-    General = Window:AddTab({ Title = "General", Icon = "layout-grid" }),
-    Misc = Window:AddTab({ Title = "Miscellaneous", Icon = "align-left" }),
+    General = Window:AddTab({ Title = "General", Icon = "align-left" }),
+    Misc = Window:AddTab({ Title = "Miscellaneous", Icon = "layout-grid" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -42,7 +42,7 @@ do
 
     Tabs.General:AddButton({
         Title = "Skip",
-        Description = "Continue",
+        Description = "Skip Part",
         Callback = function()
             Window:Dialog({
                 Title = "Skip",
@@ -73,24 +73,6 @@ do
 
     Options.MyToggle:SetValue(false)
 
-    local Slider = Tabs.General:AddSlider("Slider", {
-        Title = "Slider",
-        Description = "This is a slider",
-        Default = 2,
-        Min = 0,
-        Max = 5,
-        Rounding = 1,
-        Callback = function(Value)
-            print("Slider was changed:", Value)
-        end
-    })
-
-    Slider:OnChanged(function(Value)
-        print("Slider changed:", Value)
-    end)
-
-    Slider:SetValue(3)
-
     local Dropdown = Tabs.General:AddDropdown("Dropdown", {
         Title = "Dropdown",
         Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
@@ -102,28 +84,6 @@ do
 
     Dropdown:OnChanged(function(Value)
         print("Dropdown changed:", Value)
-    end)
-
-    local MultiDropdown = Tabs.General:AddDropdown("MultiDropdown", {
-        Title = "MultiDropdown",
-        Description = "You can select multiple values.",
-        Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
-        Multi = true,
-        Default = {"seven", "twelve"}
-    })
-
-    MultiDropdown:SetValue({
-        three = true,
-        five = true,
-        seven = false
-    })
-
-    MultiDropdown:OnChanged(function(Value)
-        local Values = {}
-        for Value, State in next, Value do
-            table.insert(Values, Value)
-        end
-        print("MultiDropdown changed:", table.concat(Values, ", "))
     end)
 
     SaveManager:SetLibrary(Fluent)
