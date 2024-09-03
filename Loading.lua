@@ -40,19 +40,19 @@ do
         Description = "Very important button",
         Callback = function()
             Window:Dialog({
-                Title = "Dialog Title",
-                Content = "This is a dialog",
+                Title = "Skip",
+                Content = "Do you want to Skip this Part?",
                 Buttons = {
                     {
-                        Title = "Confirm",
+                        Title = "Yes",
                         Callback = function()
                             print("Dialog confirmed.")
                         end
                     },
                     {
-                        Title = "Cancel",
+                        Title = "No",
                         Callback = function()
-                            print("Dialog cancelled.")
+                            print("No")
                         end
                     }
                 }
