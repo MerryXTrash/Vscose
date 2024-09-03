@@ -120,23 +120,24 @@ do
         print("MultiDropdown changed:", table.concat(Values, ", "))
     end)
 
-SaveManager:SetLibrary(Fluent)
-InterfaceManager:SetLibrary(Fluent)
+    SaveManager:SetLibrary(Fluent)
+    InterfaceManager:SetLibrary(Fluent)
 
-SaveManager:IgnoreThemeSettings()
-SaveManager:SetIgnoreIndexes({})
-InterfaceManager:SetFolder("FluentScriptHub")
-SaveManager:SetFolder("FluentScriptHub/specific-game")
+    SaveManager:IgnoreThemeSettings()
+    SaveManager:SetIgnoreIndexes({})
+    InterfaceManager:SetFolder("FluentScriptHub")
+    SaveManager:SetFolder("FluentScriptHub/specific-game")
 
-InterfaceManager:BuildInterfaceSection(Tabs.Settings)
-SaveManager:BuildConfigSection(Tabs.Settings)
+    InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+    SaveManager:BuildConfigSection(Tabs.Settings)
 
-Window:SelectTab(1)
+    Window:SelectTab(1)
 
-Fluent:Notify({
-    Title = "จ๊ะจ๊าเองจ้า",
-    Content = "ใช้สคริปต์ระวังโดนแบนกันด้วยน้าา",
-    Duration = 5
-})
+    Fluent:Notify({
+        Title = "จ๊ะจ๊าเองจ้า",
+        Content = "ใช้สคริปต์ระวังโดนแบนกันด้วยน้าา",
+        Duration = 5
+    })
 
-SaveManager:LoadAutoloadConfig()
+    SaveManager:LoadAutoloadConfig()
+end
