@@ -46,7 +46,7 @@ do
         Callback = function()
             Window:Dialog({
                 Title = "Fullbright",
-                Content = "Do you want to skip shis Part?",
+                Content = "Do you want to skip this Part?",
                 Buttons = {
                     {
                         Title = "Yes",
@@ -65,25 +65,25 @@ do
         end
     })
 
- Tabs.Misc:AddButton({
+    Tabs.Misc:AddButton({
         Title = "Fullbright",
-        Description = "If you Scared a Dark",
+        Description = "If you're scared of the dark",
         Callback = function()
             Window:Dialog({
                 Title = "Fullbright",
-                Content = "Do you want to Open Fullbright?",
+                Content = "Do you want to enable Fullbright?",
                 Buttons = {
                     {
                         Title = "Yes",
                         Callback = function()
-                                local Time = game.Lighting
-    Time.ClockTime = 12
-    Time.Ambient = Color3.new(1, 1, 1)
-    Time.Brightness = 10
-    ColorCorrection.Brightness = 0.2
-    ColorCorrection.Contrast = 0
-    ColorCorrection.TintColor = Color3.new(1, 1, 1)
-    ColorCorrection.Enable = true
+                            local Time = game.Lighting
+                            Time.ClockTime = 12
+                            Time.Ambient = Color3.new(1, 1, 1)
+                            Time.Brightness = 10
+                            ColorCorrection.Brightness = 0.2
+                            ColorCorrection.Contrast = 0
+                            ColorCorrection.TintColor = Color3.new(1, 1, 1)
+                            ColorCorrection.Enabled = true
                         end
                     },
                     {
@@ -97,23 +97,23 @@ do
         end
     })
     
-local Toggle = Tabs.Misc:AddToggle("MyToggle", {Title = "Fullbright", Default = false})
+    local Toggle = Tabs.Misc:AddToggle("MyToggle", {Title = "Fullbright", Default = false})
 
-Toggle:OnChanged(function(value)
-    if value then
-    _G.FB = true
-    local Time = game.Lighting
-    Time.ClockTime = 12
-    Time.Ambient = Color3.new(1, 1, 1)
-    Time.Brightness = 10
-    ColorCorrection.Brightness = 0.2
-    ColorCorrection.Contrast = 0
-    ColorCorrection.TintColor = Color3.new(1, 1, 1)
-    ColorCorrection.Enable = true
-end)
-    else
-    _G.FB = false
-end)
+    Toggle:OnChanged(function(value)
+        if value then
+            _G.FB = true
+            local Time = game.Lighting
+            Time.ClockTime = 12
+            Time.Ambient = Color3.new(1, 1, 1)
+            Time.Brightness = 10
+            ColorCorrection.Brightness = 0.2
+            ColorCorrection.Contrast = 0
+            ColorCorrection.TintColor = Color3.new(1, 1, 1)
+            ColorCorrection.Enabled = true
+        else
+            _G.FB = false
+        end
+    end)
 
     Options.MyToggle:SetValue(false)
 
