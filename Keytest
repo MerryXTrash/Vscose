@@ -18,7 +18,7 @@ FrameCorner.Parent = Frame
 -- เพิ่ม UIStroke สำหรับขอบสีฟ้า
 local FrameStroke = Instance.new("UIStroke")
 FrameStroke.Thickness = 2
-FrameStroke.Color = Color3.fromRGB(255, 0, 255)
+FrameStroke.Color = Color3.fromRGB(138,43,226)
 FrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 FrameStroke.Parent = Frame
 
