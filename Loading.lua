@@ -4,7 +4,7 @@ local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTr
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/LoadongESP.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Xervice HUB Beta",
+    Title = "The Mimic | Chapter Name",
     SubTitle = "by JajaEngkubb",
     TabWidth = 160,
     Size = UDim2.fromOffset(460, 300),
@@ -104,7 +104,7 @@ do
     
     Tabs.Misc:AddButton({
         Title = "Player ESP",
-        Description = "Show ",
+        Description = "Show Player ESP",
         Callback = function()
             Window:Dialog({
                 Title = "Fullbright",
