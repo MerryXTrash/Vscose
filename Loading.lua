@@ -83,18 +83,17 @@ do
                         Title = "Yes",
                         Callback = function()
                             local Lighting = game.Lighting
-                            Time.ClockTime = 12
+                            Lighting.ClockTime = 12
                             Lighting.Brightness = 2
-    Lighting.ClockTime = 14
-    Lighting.FogEnd = 100000
-    Lighting.GlobalShadows = false
-    Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+                            Lighting.FogEnd = 100000
+                            Lighting.GlobalShadows = false
+                            Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
                         end
                     },
                     {
                         Title = "No",
                         Callback = function()
-                            print("NO")
+                            print("Fullbright not enabled.")
                         end
                     }
                 }
@@ -102,33 +101,42 @@ do
         end
     })
     
-    Tabs.Misc:AddButton({
+    Tabs.ESP:AddButton({
         Title = "Player ESP",
         Description = "Show Player ESP",
         Callback = function()
             Window:Dialog({
-                Title = "Fullbright",
-                Content = "Do you want to enable Fullbright?",
+                Title = "Player ESP",
+                Content = "Do you want to enable Player ESP?",
                 Buttons = {
                     {
                         Title = "Yes",
                         Callback = function()
-                            local Players = game.Players
-for _, player in pairs(Players:GetPlayers()) do
-    setupHighlightForPlayer(player)
-end
+                            local function setupHighlightForPlayer(player)
+                                -- Example highlight setup
+                                local highlight = Instance.new("Highlight")
+                                highlight.Parent = player.Character
+                                highlight.Adornee = player.Character
+                                highlight.FillColor = Color3.fromRGB(0, 0, 255)  -- Set fill color to blue
+                            end
 
--- ฟังก์ชันที่จะทำงานเมื่อผู้เล่นใหม่เข้ามา
-Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Connect(function(character)
-        setupHighlightForPlayer(player)
-    end)
-end)
+                            local Players = game.Players
+                            for _, player in pairs(Players:GetPlayers()) do
+                                setupHighlightForPlayer(player)
+                            end
+
+                            -- Function to handle new players
+                            Players.PlayerAdded:Connect(function(player)
+                                player.CharacterAdded:Connect(function(character)
+                                    setupHighlightForPlayer(player)
+                                end)
+                            end)
+                        end
                     },
                     {
                         Title = "No",
                         Callback = function()
-                            print("NO")
+                            print("Player ESP not enabled.")
                         end
                     }
                 }
@@ -137,11 +145,9 @@ end)
     })
 
     SaveManager:SetLibrary(Fluent)
-
     SaveManager:IgnoreThemeSettings()
     SaveManager:SetIgnoreIndexes({})
     SaveManager:SetFolder("FluentScriptHub/specific-game")
-
     SaveManager:BuildConfigSection(Tabs.Settings)
 
     Window:SelectTab(1)
