@@ -81,14 +81,13 @@ do
                     {
                         Title = "Yes",
                         Callback = function()
-                            local Time = game.Lighting
+                            local Lighting = game.Lighting
                             Time.ClockTime = 12
-                            Time.Ambient = Color3.new(1, 1, 1)
-                            Time.Brightness = 10
-                            ColorCorrection.Brightness = 0.2
-                            ColorCorrection.Contrast = 0
-                            ColorCorrection.TintColor = Color3.new(1, 1, 1)
-                            ColorCorrection.Enabled = true
+                            Lighting.Brightness = 2
+    Lighting.ClockTime = 14
+    Lighting.FogEnd = 100000
+    Lighting.GlobalShadows = false
+    Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
                         end
                     },
                     {
@@ -102,7 +101,7 @@ do
         end
     })
     
-    local Toggle = Tabs.Misc:AddToggle("MyToggle", {Title = "Player ESP", Default = false})
+    local Toggle = Tabs.ESP:AddToggle("MyToggle", {Title = "Player ESP", Default = false})
 
     Toggle:OnChanged(function(value)
         if value then
@@ -113,19 +112,6 @@ ToggleHighlighting(false)
     end)
 
     Options.MyToggle:SetValue(false)
-
-    local Dropdown = Tabs.General:AddDropdown("Dropdown", {
-        Title = "Dropdown",
-        Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
-        Multi = false,
-        Default = 1
-    })
-
-    Dropdown:SetValue("four")
-
-    Dropdown:OnChanged(function(Value)
-        print("Dropdown changed:", Value)
-    end)
 
     SaveManager:SetLibrary(Fluent)
 
