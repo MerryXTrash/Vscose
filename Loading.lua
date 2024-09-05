@@ -2,9 +2,12 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/Toggle.lua"))()
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/LoadongESP.lua"))()
+local Book = 1
+local Chapter = 1
+
 
 local Window = Fluent:CreateWindow({
-    Title = "The Mimic | Chapter Name",
+    Title = "The Mimic | Book Chapter",
     SubTitle = "by JajaEngkubb",
     TabWidth = 160,
     Size = UDim2.fromOffset(460, 300),
