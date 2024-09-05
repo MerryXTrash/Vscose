@@ -4,7 +4,7 @@ local Show = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTr
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Vscose/main/LoadongESP.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "The Mimic | The Witch Trial",
+    Title = "The Mimic | Book 1 Chapter 4",
     SubTitle = "by JajaEngkubb",
     TabWidth = 160,
     Size = UDim2.fromOffset(460, 300),
@@ -42,13 +42,13 @@ do
     })
 
     Tabs.General:AddParagraph({
-        Title = "Gamemode",
-        Content = "The Witch Trial"
+        Title = "Book 1",
+        Content = "Chapter 4"
     })
 
     Tabs.General:AddButton({
         Title = "Skip",
-        Description = "Continue(Final)",
+        Description = "Continue",
         Callback = function()
             Window:Dialog({
                 Title = "Skip",
@@ -57,7 +57,7 @@ do
                     {
                         Title = "Yes",
                         Callback = function()
-                            game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2690.99169921875, 9.297460556030273, 649.3221435546875)
+                            game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(85.20524597167969, -51.00001525878906, -1415.0792236328125)
                         end
                     },
                     {
