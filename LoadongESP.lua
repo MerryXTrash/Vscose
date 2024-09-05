@@ -44,10 +44,3 @@ Players.PlayerAdded:Connect(function(player)
         setupHighlightForPlayer(player)
     end)
 end)
-
--- ตัวอย่างการใช้ฟังก์ชันกับ Mob (ถ้ามี)
---b1c2
-local mob = game.Workspace.GameAI:WaitForChild("AI")
-local Kusonoki = game.Workspace.GameAI:WaitForChild("Kusonoki")
-setupHighlightForMob(mob)
-setupHighlightForMob(Kusonoki)
