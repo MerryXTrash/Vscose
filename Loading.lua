@@ -102,17 +102,39 @@ do
         end
     })
     
-    local Toggle = Tabs.ESP:AddToggle("MyToggle", {Title = "Player ESP", Default = false})
+    Tabs.Misc:AddButton({
+        Title = "Player ESP",
+        Description = "Show ",
+        Callback = function()
+            Window:Dialog({
+                Title = "Fullbright",
+                Content = "Do you want to enable Fullbright?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            local Players = game.Players
+for _, player in pairs(Players:GetPlayers()) do
+    setupHighlightForPlayer(player)
+end
 
-    Toggle:OnChanged(function(value)
-        if value then
-ToggleHighlighting(true)
-        else
-ToggleHighlighting(false)
-        end
+-- ฟังก์ชันที่จะทำงานเมื่อผู้เล่นใหม่เข้ามา
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        setupHighlightForPlayer(player)
     end)
-
-    Options.MyToggle:SetValue(false)
+end)
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            print("NO")
+                        end
+                    }
+                }
+            })
+        end
+    })
 
     SaveManager:SetLibrary(Fluent)
 
