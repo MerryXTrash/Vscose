@@ -1,0 +1,23 @@
+-- Place this LocalScript in StarterPlayerScripts
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Function to hide all parts in the character
+local function hideCharacter()
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") and part.Name ~= "Head" then
+            part.Transparency = 1
+            part.CanCollide = false
+        end
+    end
+end
+
+-- Call the function to hide the character
+hideCharacter()
+
+-- Reapply the function if the character respawns
+player.CharacterAdded:Connect(function(char)
+    character = char
+    hideCharacter()
+end)
