@@ -7,10 +7,10 @@ local UICorner = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
 
 -- Properties:
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.ResetOnDisable = false  -- ป้องกันไม่ให้ UI หายไปเมื่อผู้เล่นตาย
-ScreenGui.ZIndex = 1  -- ตั้งค่า ZIndex ให้เป็น 1
+ScreenGui.Parent = game.CoreGui
+ImageButton.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ImageButton.ResetOnDisable = false  -- ป้องกันไม่ให้ UI หายไปเมื่อผู้เล่นตาย
+ImageButton.ZIndex = 1  -- ตั้งค่า ZIndex ให้เป็น 1
 
 ImageButton.Parent = ScreenGui
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
