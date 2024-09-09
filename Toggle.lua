@@ -8,7 +8,6 @@ local UIStroke = Instance.new("UIStroke")
 
 -- Properties:
 ScreenGui.Parent = game.CoreGui
-ImageButton.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ImageButton.ResetOnDisable = false  -- ป้องกันไม่ให้ UI หายไปเมื่อผู้เล่นตาย
 ImageButton.ZIndex = 1  -- ตั้งค่า ZIndex ให้เป็น 1
 
