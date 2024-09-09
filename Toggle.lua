@@ -16,7 +16,7 @@ ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageButton.BackgroundTransparency = 1.000
 ImageButton.Size = UDim2.new(0.07, 0, 0.15, 0)
 ImageButton.Position = UDim2.new(0.95, -95, 0, 0)
-ImageButton.Image = "rbxassetid://134754092492795"
+ImageButton.Image = "rbxassetid://134204200422920"
 ImageButton.ImageTransparency = 0.000
 ImageButton.Active = true
 ImageButton.Draggable = true
@@ -27,8 +27,8 @@ UICorner.CornerRadius = UDim.new(0.1, 0)
 
 -- Adding UIStroke (สำหรับขอบ)
 UIStroke.Parent = ImageButton
-UIStroke.Color = Color3.fromRGB(85, 0, 255)
-UIStroke.Thickness = 2
+UIStroke.Color = Color3.fromRGB(56, 182, 255)
+UIStroke.Thickness = 1
 
 -- การตั้งค่า ZIndex ของ ImageButton
 ImageButton.ZIndex = 1  -- ตั้งค่า ZIndex ของปุ่มให้เป็น 1
