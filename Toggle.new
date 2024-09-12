@@ -9,7 +9,7 @@ local UIStroke = Instance.new("UIStroke")
 -- Properties:
 ScreenGui.Parent = game.CoreGui
   -- ป้องกันไม่ให้ UI หายไปเมื่อผู้เล่นตาย
-ImageButton.ZIndex = 1  -- ตั้งค่า ZIndex ให้เป็น 1
+ImageButton.ZIndex = 100  -- ตั้งค่า ZIndex ให้เป็น 1
 
 ImageButton.Parent = ScreenGui
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
