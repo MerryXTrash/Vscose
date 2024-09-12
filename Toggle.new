@@ -1,16 +1,13 @@
 -- Version: 3.2
 
 -- Instances:
-local ScreenGui = Instance.new("ScreenGui")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
 
 -- Properties:
-ScreenGui.Parent = game.CoreGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
-ImageButton.Parent = ScreenGui
+ImageButton.Parent = game.CoreGui.Hawk
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageButton.BackgroundTransparency = 1.000
 ImageButton.Size = UDim2.new(0.07, 0, 0.15, 0)
@@ -30,7 +27,7 @@ UIStroke.Color = Color3.fromRGB(56, 182, 255)
 UIStroke.Thickness = 1
 
 -- การตั้งค่า ZIndex ของ ImageButton
-ImageButton.ZIndex = 111111  -- ตั้งค่า ZIndex ของปุ่มให้เป็น 1
+ImageButton.ZIndex = 2  -- ตั้งค่า ZIndex ของปุ่มให้เป็น 1
 
 -- การจับคลิกปุ่ม
 ImageButton.MouseButton1Down:Connect(function()
