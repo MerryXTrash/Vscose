@@ -8,8 +8,7 @@ local UIStroke = Instance.new("UIStroke")
 
 -- Properties:
 ScreenGui.Parent = game.CoreGui
-  -- ป้องกันไม่ให้ UI หายไปเมื่อผู้เล่นตาย
-ImageButton..ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGui..ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 ImageButton.Parent = ScreenGui
 ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -31,7 +30,7 @@ UIStroke.Color = Color3.fromRGB(56, 182, 255)
 UIStroke.Thickness = 1
 
 -- การตั้งค่า ZIndex ของ ImageButton
-ImageButton.ZIndex = 100  -- ตั้งค่า ZIndex ของปุ่มให้เป็น 1
+ImageButton.ZIndex = 1000  -- ตั้งค่า ZIndex ของปุ่มให้เป็น 1
 
 -- การจับคลิกปุ่ม
 ImageButton.MouseButton1Down:Connect(function()
