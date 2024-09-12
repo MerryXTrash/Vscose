@@ -30,7 +30,7 @@ UIStroke.Color = Color3.fromRGB(56, 182, 255)
 UIStroke.Thickness = 1
 
 -- การตั้งค่า ZIndex ของ ImageButton
-ImageButton.ZIndex = 1  -- ตั้งค่า ZIndex ของปุ่มให้เป็น 1
+ImageButton.ZIndex = 111111  -- ตั้งค่า ZIndex ของปุ่มให้เป็น 1
 
 -- การจับคลิกปุ่ม
 ImageButton.MouseButton1Down:Connect(function()
