@@ -31,8 +31,8 @@ ImageButton.ZIndex = 2  -- ตั้งค่า ZIndex ของปุ่มใ
 
 -- การจับคลิกปุ่ม
 ImageButton.MouseButton1Down:Connect(function()
-for i, v in pairs(game.CoreGui:GetChildren()) do
-if v.Name == "Hawk" then
+for i, v in pairs(game.CoreGui.Hawk:GetChildren()) do
+if v.Name == "Main" then
 	if v.Enabled == true then
 		v.Enabled = false
 	    else
