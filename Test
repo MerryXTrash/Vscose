@@ -1,7 +1,5 @@
-local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/NewUi/main/%E0%B8%81%E0%B9%87%E0%B8%AD%E0%B8%9B%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%AB%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B9%84%E0%B8%A3.lua.txt"))()
-UI.Config.MainColor <color3>
-UI.Config.DropColor <color3>
-UI.Config["UI Size"] <udim2>
+local script = loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/NewUi/main/%E0%B8%81%E0%B9%87%E0%B8%AD%E0%B8%9B%E0%B8%97%E0%B8%B3%E0%B9%80%E0%B8%AB%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B9%84%E0%B8%A3.lua.txt"))()
+local UI = require(script:WaitForChild('ModuleScript'))
 
 local Window = UI:NewWindow('SWITCH HUB','Series A B C D','rbxassetid://6886692638')
 local MenuChangeLog = Window:AddMenu('Change Log',"i don't know",'hash','change')
