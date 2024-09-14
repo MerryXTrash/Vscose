@@ -4,7 +4,9 @@ screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
 -- สร้าง Frame เพื่อบรรจุ ImageLabel
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(1, 0, 1, 0) -- ขนาดของ Frame ตามต้องการ
+frame.Size = UDim2.new(0.5, 0, 1, 0) -- ขนาดของ Frame
+frame.Position = UDim2.new(1, -frame.Size.X.Offset, 0, 0) -- ให้ Frame อยู่ทางด้านขวา
+frame.AnchorPoint = Vector2.new(1, 0) -- จุดยึดของ Frame อยู่ที่มุมขวาบน
 frame.BackgroundTransparency = 1 -- ไม่ให้มีพื้นหลัง
 frame.Parent = screenGui
 
@@ -12,9 +14,14 @@ frame.Parent = screenGui
 local uiListLayout = Instance.new("UIListLayout")
 uiListLayout.Parent = frame
 uiListLayout.FillDirection = Enum.FillDirection.Vertical -- หรือ Horizontal
-uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right -- จัดเรียงไปทางขวา
 uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Top
 uiListLayout.Padding = UDim.new(0, 10) -- ระยะห่างระหว่าง ImageLabel
+
+-- สร้าง UIPadding ใน Frame (ถ้าต้องการ)
+local uiPadding = Instance.new("UIPadding")
+uiPadding.PaddingRight = UDim.new(0, 10) -- ระยะห่างจากขอบขวา
+uiPadding.Parent = frame
 
 -- ฟังก์ชันสร้าง ImageLabel
 local function createImageLabel(parent, imageId, size)
