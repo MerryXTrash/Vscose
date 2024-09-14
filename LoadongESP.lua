@@ -2,62 +2,55 @@
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
+-- สร้าง Frame เพื่อบรรจุ ImageLabel
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(1, 0, 1, 0) -- ขนาดของ Frame ตามต้องการ
+frame.BackgroundTransparency = 1 -- ไม่ให้มีพื้นหลัง
+frame.Parent = screenGui
+
+-- สร้าง UIListLayout ใน Frame
+local uiListLayout = Instance.new("UIListLayout")
+uiListLayout.Parent = frame
+uiListLayout.FillDirection = Enum.FillDirection.Vertical -- หรือ Horizontal
+uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+uiListLayout.Padding = UDim.new(0, 10) -- ระยะห่างระหว่าง ImageLabel
+
 -- ฟังก์ชันสร้าง ImageLabel
-local function createImageLabel(parent, imageId, position, size)
+local function createImageLabel(parent, imageId, size)
     local imageLabel = Instance.new("ImageLabel")
     imageLabel.Image = imageId
-    imageLabel.Position = position
     imageLabel.Size = size
+    imageLabel.BackgroundTransparency = 1 -- ปิดพื้นหลัง
     imageLabel.Parent = parent
 end
+
+-- ค่าของ imageId ตามชื่อ
+local imageIdMap = {
+    ["one"] = "rbxassetid://10981760905",
+    ["two"] = "rbxassetid://10981760240",
+    ["three"] = "rbxassetid://10981760034",
+    ["four"] = "rbxassetid://10981760464",
+    ["five"] = "rbxassetid://10981759411",
+    ["six"] = "rbxassetid://10981758963",
+    ["seven"] = "rbxassetid://10981759866",
+    ["eight"] = "rbxassetid://10981761464",
+    ["nine"] = "rbxassetid://10981760686",
+    ["ten"] = "rbxassetid://10981759696",
+    ["eleven"] = "rbxassetid://10981759169",
+    ["twelve"] = "rbxassetid://10981761162"
+}
 
 -- ค้นหา Object และตรวจสอบค่า
 local Card = game.Workspace.Section2.Objective.Cards
 local cardNames = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"}
 
--- ฟังก์ชันสำหรับการตั้งค่าตำแหน่งของ ImageLabel ตามลำดับ
-local function getImagePosition(index)
-    local xOffset = 0.1
-    local yOffset = 0.1 + (index - 1) * (0.2 + spacing)
-    return UDim2.new(xOffset, 0, yOffset, 0)
-end
-
--- ค่าระยะห่างระหว่างรูปภาพ
-local spacing = 0.3
-
--- ตรวจสอบและสร้าง ImageLabel ตามชื่อของลูกของ Card
+-- สร้าง ImageLabel ใน Frame
 for i, name in ipairs(cardNames) do
     local card = Card:FindFirstChild(name)
     if card then
-        local imageId = "rbxassetid://10981760905" -- ใช้ภาพเดียวสำหรับตัวอย่างนี้
-        -- กำหนด ImageId ตามชื่อ
-        if name == "one" then
-            imageId = "rbxassetid://10981760905"
-        elseif name == "two" then
-            imageId = "rbxassetid://10981760240"
-        elseif name == "three" then
-            imageId = "rbxassetid://10981760034"
-        elseif name == "four" then
-            imageId = "rbxassetid://10981760464"
-        elseif name == "five" then
-            imageId = "rbxassetid://10981759411"
-        elseif name == "six" then
-            imageId = "rbxassetid://10981758963"
-        elseif name == "seven" then
-            imageId = "rbxassetid://10981759866"
-        elseif name == "eight" then
-            imageId = "rbxassetid://10981761464"
-        elseif name == "nine" then
-            imageId = "rbxassetid://10981760686"
-        elseif name == "ten" then
-            imageId = "rbxassetid://10981759696"
-        elseif name == "eleven" then
-            imageId = "rbxassetid://10981759169"
-        elseif name == "twelve" then
-            imageId = "rbxassetid://10981761162"
-        end
-
+        local imageId = imageIdMap[name]
         -- สร้าง ImageLabel
-        createImageLabel(screenGui, imageId, getImagePosition(i), UDim2.new(0.2, 0, 0.2, 0))
+        createImageLabel(frame, imageId, UDim2.new(0.2, 0, 0.2, 0))
     end
 end
