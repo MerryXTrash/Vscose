@@ -51,7 +51,9 @@ for i, name in ipairs(cardNames) do
     local card = Card:FindFirstChild(name)
     if card then
         local imageId = imageIdMap[name]
+        -- ขนาดที่ทำให้ภาพเรียวและยาว
+        local size = UDim2.new(0.1, 0, 0.3, 0) -- ความกว้าง 10% และความสูง 30%
         -- สร้าง ImageLabel
-        createImageLabel(frame, imageId, UDim2.new(0.2, 0, 0.2, 0))
+        createImageLabel(frame, imageId, size)
     end
 end
