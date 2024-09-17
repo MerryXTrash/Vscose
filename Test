@@ -1,60 +1,90 @@
 -- รับโฟลเดอร์ของการ์ด
 local CardsFolder = game:GetService("Workspace").Section2.Objective.Cards
 
--- สร้างและกำหนดค่า ScreenGui
-local Screen = Instance.new("ScreenGui")
-Screen.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") -- เปลี่ยนพาเรนต์ไปยัง PlayerGui
+-- รับ PlayerGui ของผู้เล่น
+local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- สร้างและกำหนดค่า Frame
+-- ลบ ScreenGui เก่า (ถ้ามี)
+local oldScreenGui = playerGui:FindFirstChild("CardScreenGui")
+if oldScreenGui then
+    oldScreenGui:Destroy()
+end
+
+-- สร้าง ScreenGui ใหม่
+local Screen = Instance.new("ScreenGui")
+Screen.Name = "CardScreenGui"
+Screen.Parent = playerGui
+
+-- สร้าง Frame ใหม่
 local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 650, 0, 100) -- ขนาดของ Frame เพื่อรองรับการ์ด 6 ใบ
-Frame.Position = UDim2.new(0, 10, 0, 10) -- ตำแหน่งมุมซ้ายบนของหน้าจอ
+Frame.Size = UDim2.new(1, -20, 0, 100)
+Frame.Position = UDim2.new(0, 10, 0, 10)
 Frame.Parent = Screen
+
+-- ทำให้ Frame ล่องหน
+Frame.BackgroundTransparency = 1 -- ทำให้พื้นหลังของ Frame โปร่งใส
 
 -- เพิ่ม UIListLayout เข้าไปใน Frame
 local uiListLayout = Instance.new("UIListLayout")
 uiListLayout.FillDirection = Enum.FillDirection.Horizontal
 uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-uiListLayout.Padding = UDim.new(0, 0) -- ไม่มีระยะห่างระหว่างการ์ด
+uiListLayout.Padding = UDim.new(0, 0)
+uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 uiListLayout.Parent = Frame
+
+-- สร้างตารางการ์ดและจัดเรียงตามชื่อ
+local cards = {}
+for _, card in pairs(CardsFolder:GetChildren()) do
+    if card:IsA("Model") then
+        table.insert(cards, card)
+    end
+end
+
+-- เรียงลำดับการ์ดตามชื่อ (จากน้อยไปมาก)
+table.sort(cards, function(a, b)
+    return a.Name < b.Name
+end)
+
+-- สีที่ต้องการ
+local borderColor = Color3.fromRGB(56, 182, 255) -- สีขอบ
+local textColor = Color3.fromRGB(56, 182, 255)   -- สีข้อความ
 
 -- แสดงการ์ดทั้งหมดใน CardsFolder
 local cardCount = 0
-for _, card in pairs(CardsFolder:GetChildren()) do
-    if card:IsA("Model") then
-        for _, desc in pairs(card:GetDescendants()) do
-            if desc:IsA("MeshPart") then
-                local imageLabel = Instance.new("ImageLabel")
-                imageLabel.Parent = Frame
-                imageLabel.Size = UDim2.new(0, 100, 0, 75) -- ขนาดของการ์ดที่ผอมลง
-                imageLabel.Image = desc.TextureID
+for _, card in pairs(cards) do
+    for _, desc in pairs(card:GetDescendants()) do
+        if desc:IsA("MeshPart") and desc.TextureID then
+            local imageLabel = Instance.new("ImageLabel")
+            imageLabel.Parent = Frame
+            imageLabel.Size = UDim2.new(0, 50, 0, 75) -- ขนาดของการ์ด
+            imageLabel.Image = desc.TextureID
+            imageLabel.BackgroundTransparency = 1
 
-                -- ตั้งค่ากลางภาพ
-                imageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-                imageLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+            -- เพิ่มขอบให้กับ ImageLabel
+            imageLabel.BorderSizePixel = 2 -- ขนาดของขอบ
+            imageLabel.BorderColor3 = borderColor -- สีขอบ
 
-                -- ตรวจสอบการ์ดสำหรับ TextLabel
-                for _, child in pairs(card:GetDescendants()) do
-                    if child:IsA("TextLabel") then
-                        local textLabel = Instance.new("TextLabel")
-                        textLabel.Parent = imageLabel -- วาง TextLabel ภายใน ImageLabel
-                        textLabel.Size = UDim2.new(1, 0, 1, 0) -- ขนาดเต็มพื้นที่ของ ImageLabel
-                        textLabel.BackgroundTransparency = 1 -- ลบพื้นหลัง
-                        textLabel.Text = child.Text
-                        textLabel.TextScaled = true -- ข้อความขยายตามขนาด
-                        textLabel.TextColor3 = Color3.new(1, 1, 1) -- เปลี่ยนสีข้อความเป็นสีขาว
-                        textLabel.TextStrokeTransparency = 0.5 -- เพิ่มเส้นขอบให้ข้อความเห็นชัดขึ้น
-                        textLabel.TextAlign = Enum.TextXAlignment.Center
-                        textLabel.TextYAlignment = Enum.TextYAlignment.Center
+            for _, child in pairs(card:GetDescendants()) do
+                if child:IsA("TextLabel") then
+                    local textLabel = Instance.new("TextLabel")
+                    textLabel.Parent = imageLabel
+                    textLabel.Size = UDim2.new(1, 0, 1, 0) -- ขนาดเต็มพื้นที่ของ ImageLabel
+                    textLabel.BackgroundTransparency = 1
+                    textLabel.Text = child.Text
+                    textLabel.TextScaled = true
+                    textLabel.TextColor3 = textColor -- สีข้อความ
+                    textLabel.TextStrokeTransparency = 0.5
+                    textLabel.TextXAlignment = Enum.TextXAlignment.Center
+                    textLabel.TextYAlignment = Enum.TextYAlignment.Center
 
-                        break -- หยุดการค้นหาเมื่อเจอ TextLabel
-                    end
+                    break
                 end
+            end
 
-                cardCount = cardCount + 1
-                if cardCount >= 6 then
-                    return
-                end
+            cardCount = cardCount + 1
+            if cardCount >= 6 then
+                return
             end
         end
     end
