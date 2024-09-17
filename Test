@@ -82,18 +82,15 @@ end
 
 function Ratfind()
 local TP = game.Players.LocalPlayer.Character
+
 for _, rat in ipairs(game:GetService("Workspace"):GetDescendants()) do
     if rat:IsA("MeshPart") then
-        if rat.TextureID == "rbxassetid://8569135832" or rat.Transparency == 0 or rat:IsA("ProximityPrompt") then
-            TP.HumanoidRootPart.CFrame = rat.CFrame
-        end
-    end
-end
-end
-
-function Ratx()
-Ratfind()
-setHoldDurationForAllProximityPrompts()
+        if rat.TextureID == "rbxassetid://8569135832" or rat.Transparency == 0 then
+            local proximityPrompt = rat:FindFirstChildOfClass("ProximityPrompt")
+            if proximityPrompt then
+                TP.HumanoidRootPart.CFrame = rat.CFrame
+                setHoldDurationForAllProximityPrompts()
+                fireproximityprompt(proximityPrompt)
 wait(0.2)
 fire()
 fire()
@@ -113,6 +110,10 @@ fire()
 wait(0.2)
 TP.HumanoidRootPart.CFrame = CFrame.new(-1674.827, -21.010, -3402.391)
 countdown(25)
+            end
+        end
+    end
+end
 end
 
-Ratx()
+Ratfind()
