@@ -1,3 +1,21 @@
+local function setHoldDurationForAllProximityPrompts()
+    for i, v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+    if v.ClassName == "ProximityPrompt" then
+        v.HoldDuration = 0
+    end
+end
+end
+
+setHoldDurationForAllProximityPrompts()
+
+local function fire()
+    for _, descendant in ipairs(Workspace:GetDescendants()) do
+        if descendant:IsA("ProximityPrompt") then
+            fireproximityprompt(descendant)
+        end
+    end
+end
+
 local function countdown(time)
     local screenGui = Instance.new("ScreenGui")
     screenGui.Name = "CountdownGui"
@@ -58,24 +76,6 @@ local function Rat()
         if item.Name == "Poisoned Rat" then
             player.Character.Humanoid:EquipTool(item)
             break
-        end
-    end
-end
-
-local function setHoldDurationForAllProximityPrompts()
-    for i, v in ipairs(game:GetService("Workspace"):GetDescendants()) do
-    if v.ClassName == "ProximityPrompt" then
-        v.HoldDuration = 0
-    end
-end
-end
-
-setHoldDurationForAllProximityPrompts()
-
-local function fire()
-    for _, descendant in ipairs(Workspace:GetDescendants()) do
-        if descendant:IsA("ProximityPrompt") then
-            fireproximityprompt(descendant)
         end
     end
 end
