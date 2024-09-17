@@ -82,7 +82,7 @@ end
 
 local TP = game.Players.LocalPlayer.Character
 
-function Ratfind()
+local function Ratfind()
 for _, rat in ipairs(game:GetService("Workspace"):GetDescendants()) do
     if rat:IsA("MeshPart") then
         if rat.TextureID == "rbxassetid://8569135832" or rat.Transparency == 0 or rat:IsA("ProximityPrompt") then
