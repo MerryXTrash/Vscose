@@ -62,10 +62,19 @@ local function Rat()
     end
 end
 
+local function setHoldDurationForAllProximityPrompts()
+    for i, v in ipairs(game:GetService("Workspace"):GetDescendants()) do
+    if v.ClassName == "ProximityPrompt" then
+        v.HoldDuration = 0
+    end
+end
+end
+
+setHoldDurationForAllProximityPrompts()
+
 local function fire()
     for _, descendant in ipairs(Workspace:GetDescendants()) do
         if descendant:IsA("ProximityPrompt") then
-            descendant.HoldDuration = 0
             fireproximityprompt(descendant)
         end
     end
@@ -78,6 +87,7 @@ for _, rat in ipairs(game:GetService("Workspace"):GetDescendants()) do
     if rat:IsA("MeshPart") then
         if rat.TextureID == "rbxassetid://8569135832" or rat.Transparency == 0 or rat:IsA("ProximityPrompt") then
             TP.HumanoidRootPart.CFrame = rat.CFrame
+            setHoldDurationForAllProximityPrompts()
             wait(0.2)
             fire()
             fire()
