@@ -86,29 +86,33 @@ for _, rat in ipairs(game:GetService("Workspace"):GetDescendants()) do
     if rat:IsA("MeshPart") then
         if rat.TextureID == "rbxassetid://8569135832" or rat.Transparency == 0 or rat:IsA("ProximityPrompt") then
             TP.HumanoidRootPart.CFrame = rat.CFrame
-            setHoldDurationForAllProximityPrompts()
-            wait(0.2)
-            fire()
-            fire()
-            fire()
-            wait(0.2)
-            TP.HumanoidRootPart.CFrame = CFrame.new(-1539.063, -30.171, -3543.718)
-            wait(0.1)
-            Rat()
-            wait(0.1)
-            fire()
-            fire()
-            wait(5)
-            TP.HumanoidRootPart.CFrame = CFrame.new(-1563.528, -28.910, -3408.718)
-            wait(0.2)
-            fire()
-            fire()
-            wait(0.2)
-            TP.HumanoidRootPart.CFrame = CFrame.new(-1674.827, -21.010, -3402.391)
-            countdown(25)
         end
     end
 end
 end
 
+function Ratx()
 Ratfind()
+setHoldDurationForAllProximityPrompts()
+wait(0.2)
+fire()
+fire()
+fire()
+wait(0.2)
+TP.HumanoidRootPart.CFrame = CFrame.new(-1539.063, -30.171, -3543.718)
+wait(0.1)
+Rat()
+wait(0.1)
+fire()
+fire()
+wait(5)
+TP.HumanoidRootPart.CFrame = CFrame.new(-1563.528, -28.910, -3408.718)
+wait(0.2)
+fire()
+fire()
+wait(0.2)
+TP.HumanoidRootPart.CFrame = CFrame.new(-1674.827, -21.010, -3402.391)
+countdown(25)
+end
+
+Ratx()
