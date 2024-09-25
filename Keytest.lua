@@ -39,10 +39,6 @@ Frame.Active = true
 Frame.Draggable = true
 Frame.Parent = ScreenGui -- Ensure this is added to PlayerGui
 
-local CheckKeyCorner = Instance.new("UICorner")
-CheckKeyCorner.CornerRadius = UDim.new(0, 10)
-CheckKeyCorner.Parent = Frame
-
 local Close = Instance.new("TextButton")
 Close.Size = UDim2.new(0, 40, 0, 40)
 Close.Position = UDim2.new(1, -40, 0, 0)
@@ -97,8 +93,8 @@ TextBoxCorner.Parent = TextBox
 local GetKey = Instance.new("TextButton")
 GetKey.Size = UDim2.new(0.35, 0, 0.15, 0)
 GetKey.Position = UDim2.new(0.1, 0, 0.7, 0)
-GetKey.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-GetKey.Text = "Copy Link"
+GetKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+GetKey.Text = "Get Link"
 GetKey.TextSize = 18
 GetKey.TextColor3 = Color3.fromRGB(255, 255, 255)
 GetKey.Parent = Frame
@@ -110,7 +106,7 @@ GetKeyCorner.Parent = GetKey
 local CheckKey = Instance.new("TextButton")
 CheckKey.Size = UDim2.new(0.35, 0, 0.15, 0)
 CheckKey.Position = UDim2.new(0.55, 0, 0.7, 0)
-CheckKey.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+CheckKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 CheckKey.Text = "Enter"
 CheckKey.TextSize = 18
 CheckKey.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -181,6 +177,7 @@ Instructions.TextTransparency = 1
 TextBox.TextTransparency = 1
 GetKey.TextTransparency = 1
 CheckKey.TextTransparency = 1
+
 -- Tween for text elements on zoom in (continued)
 TweenTitleIn:Play()
 TweenInstructionsIn:Play()
