@@ -21,8 +21,8 @@ FrameCorner.Parent = Frame
 
 -- เพิ่ม UIStroke สำหรับขอบสีฟ้า
 local FrameStroke = Instance.new("UIStroke")  -- สร้าง UIStroke ใหม่
-FrameStroke.Thickness = 2  -- กำหนดความหนาของขอบเป็น 2 พิกเซล
-FrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border  -- ให้ขอบอยู่ที่ขอบของ Frame
+FrameStroke.Thickness = 4  -- กำหนดความหนาของขอบเป็น 2 พิกเซล
+FrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Outer  -- ให้ขอบอยู่ที่ขอบของ Frame
 
 local Gradient = Instance.new("UIGradient")  -- สร้าง UIGradient ใหม่เพื่อใช้ในการไล่สี
 Gradient.Color = ColorSequence.new{
