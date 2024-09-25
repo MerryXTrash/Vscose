@@ -28,7 +28,7 @@ updateKeyBasedOnDay()
 print(CorrectKey)
 
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = game:GerService("CoreGui")
+ScreenGui.Parent = game:GetService("CoreGui")
 
 local Frame = Instance.new("Frame")
 Frame.Size = UDim2.new(0, 400, 0, 300)
