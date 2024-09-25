@@ -1,7 +1,3 @@
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
-
 local TweenService = game:GetService("TweenService")
 local Header = "Overflow - Version 4.0"
 local Description = "Join Discord for Key"
