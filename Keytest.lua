@@ -39,6 +39,10 @@ Frame.Active = true
 Frame.Draggable = true
 Frame.Parent = ScreenGui -- Ensure this is added to PlayerGui
 
+local CheckKeyCorner = Instance.new("UICorner")
+CheckKeyCorner.CornerRadius = UDim.new(0, 10)
+CheckKeyCorner.Parent = Frame
+
 local Close = Instance.new("TextButton")
 Close.Size = UDim2.new(0, 40, 0, 40)
 Close.Position = UDim2.new(1, -40, 0, 0)
@@ -177,7 +181,6 @@ Instructions.TextTransparency = 1
 TextBox.TextTransparency = 1
 GetKey.TextTransparency = 1
 CheckKey.TextTransparency = 1
-
 -- Tween for text elements on zoom in (continued)
 TweenTitleIn:Play()
 TweenInstructionsIn:Play()
