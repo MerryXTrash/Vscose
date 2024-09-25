@@ -20,11 +20,18 @@ FrameCorner.CornerRadius = UDim.new(0, 10)
 FrameCorner.Parent = Frame
 
 -- เพิ่ม UIStroke สำหรับขอบสีฟ้า
-local FrameStroke = Instance.new("UIStroke")
-FrameStroke.Thickness = 2
-FrameStroke.Color = Color3.fromRGB(138,43,226)
-FrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-FrameStroke.Parent = Frame
+local FrameStroke = Instance.new("UIStroke")  -- สร้าง UIStroke ใหม่
+FrameStroke.Thickness = 2  -- กำหนดความหนาของขอบเป็น 2 พิกเซล
+FrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border  -- ให้ขอบอยู่ที่ขอบของ Frame
+
+local Gradient = Instance.new("UIGradient")  -- สร้าง UIGradient ใหม่เพื่อใช้ในการไล่สี
+Gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(138, 43, 226)),  -- เริ่มต้นด้วยสีม่วง
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))  -- ไล่สีไปยังสีขาว
+}
+
+Gradient.Parent = FrameStroke  -- กำหนดให้ UIGradient เป็นลูกของ UIStroke
+FrameStroke.Parent = Frame  -- กำหนดให้ขอบเป็นลูกของ Frame
 
 local Close = Instance.new("TextButton")
 Close.Size = UDim2.new(0, 40, 0, 40)
