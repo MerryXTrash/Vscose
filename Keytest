@@ -1,3 +1,7 @@
+local Header = "Overflow - Version 4.0"
+local Description = "Join Discord for Key"
+local CorrectKey = "123"
+
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
@@ -37,7 +41,7 @@ end)
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0, 30)
 Title.Position = UDim2.new(0, 0, 0.05, 0)
-Title.Text = "Xervice HUB"
+Title.Text = Header
 Title.TextSize = 18
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1
@@ -46,7 +50,7 @@ Title.Parent = Frame
 local Instructions = Instance.new("TextLabel")
 Instructions.Size = UDim2.new(1, 0, 0, 30)
 Instructions.Position = UDim2.new(0, 0, 0.2, 0)
-Instructions.Text = "Join Discord for Key"
+Instructions.Text = Description
 Instructions.TextSize = 13
 Instructions.TextColor3 = Color3.fromRGB(150, 150, 150)
 Instructions.BackgroundTransparency = 1
@@ -83,7 +87,7 @@ local CheckKey = Instance.new("TextButton")
 CheckKey.Size = UDim2.new(0.35, 0, 0.15, 0)
 CheckKey.Position = UDim2.new(0.55, 0, 0.7, 0)
 CheckKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-CheckKey.Text = "Check Key"
+CheckKey.Text = "Enter"
 CheckKey.TextSize = 18
 CheckKey.TextColor3 = Color3.fromRGB(150, 150, 150)
 CheckKey.Parent = Frame
@@ -93,27 +97,27 @@ CheckKeyCorner.CornerRadius = UDim.new(0, 5)
 CheckKeyCorner.Parent = CheckKey
 
 GetKey.MouseButton1Click:Connect(function()
-   setclipboard("Your Way How To Get The Key")
+   setclipboard("HHHhHh")
 end)
 
 local function validateKey(key)
-    return key == "Key" -- Replace this with your key
+    return key == CorrectKey
 end
 
 CheckKey.MouseButton1Click:Connect(function()
     local enteredKey = TextBox.Text
     if validateKey(enteredKey) then
-        TextBox.PlaceholderText = "Correct Key!"
+        TextBox.PlaceholderText = "Correct"
         TextBox.Text = ""
         wait(1)
         ScreenGui:Destroy()
         print("hhh")
 
     else
-        TextBox.PlaceholderText = "Invalid key. Try again."
+        TextBox.PlaceholderText = "Invalid"
         TextBox.Text = ""
         wait(1)
-        TextBox.PlaceholderText = "Enter Key..."
+        TextBox.PlaceholderText = "Enter"
         TextBox.Text = ""
     end
 end)
