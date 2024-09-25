@@ -160,7 +160,7 @@ CheckKey.MouseButton1Click:Connect(function()
         TweenOut.Completed:Wait() -- Wait for the tween to finish
         ScreenGui:Destroy()
         print("Key is correct!")
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Protected_3769451712136167.txt"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Testk.lua"))()
     else
         TextBox.PlaceholderText = "Invalid"
         TextBox.Text = ""
