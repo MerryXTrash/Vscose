@@ -16,7 +16,7 @@ local function updateKeyBasedOnDay()
         CorrectKey = "Wednesday"
     elseif dayOfWeek == 5 then
         CorrectKey = "Thursday"
-    elsedayOfWeek == 6 then
+    elseif dayOfWeek == 6 then  -- Fixed typo here
         CorrectKey = "Friday"
     elseif dayOfWeek == 7 then
         CorrectKey = "Saturday"
@@ -95,7 +95,6 @@ uiGradient1.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
     ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 80))
 })
-
 
 local TextBoxCorner = Instance.new("UICorner")
 TextBoxCorner.CornerRadius = UDim.new(0, 5)
@@ -189,6 +188,7 @@ TextBox.TextTransparency = 1
 GetKey.TextTransparency = 1
 CheckKey.TextTransparency = 1
 
+-- Tween for text elements on zoom in (continued)
 TweenTitleIn:Play()
 TweenInstructionsIn:Play()
 TweenTextBoxIn:Play()
@@ -197,3 +197,22 @@ TweenCheckKeyIn:Play()
 
 -- Start with a small size for the frame
 Frame.Size = UDim2.new(0, 1, 0, 1) -- Initial size for zoom-in effect
+
+-- Wait for all the tweens to complete before allowing interaction
+TweenIn.Completed:Wait()
+Title.TextTransparency = 0
+Instructions.TextTransparency = 0
+TextBox.TextTransparency = 0
+GetKey.TextTransparency = 0
+CheckKey.TextTransparency = 0
+
+-- Ensure the TextBox is focused when the GUI opens
+TextBox.Focus()
+
+-- Additional Cleanup Function (Optional)
+local function cleanup()
+    ScreenGui:Destroy()
+end
+
+-- Connect to the close button again in case it's needed
+Close.MouseButton1Click:Connect(cleanup)
