@@ -39,25 +39,13 @@ Frame.Active = true
 Frame.Draggable = true
 Frame.Parent = ScreenGui -- Ensure this is added to PlayerGui
 
--- Add gradient
-local uiGradient = Instance.new("UIGradient")
-uiGradient.Parent = Frame
-uiGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(40, 40, 40))
-})
-
-local FrameCorner = Instance.new("UICorner")
-FrameCorner.CornerRadius = UDim.new(0, 10)
-FrameCorner.Parent = Frame
-
 local Close = Instance.new("TextButton")
 Close.Size = UDim2.new(0, 40, 0, 40)
 Close.Position = UDim2.new(1, -40, 0, 0)
 Close.BackgroundTransparency = 1
 Close.Text = "×"
 Close.TextScaled = true
-Close.TextColor3 = Color3.fromRGB(150, 150, 150)
+Close.TextColor3 = Color3.fromRGB(255, 255, 255)
 Close.Parent = Frame
 Close.MouseButton1Click:Connect(function()
     ScreenGui:Destroy()
