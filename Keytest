@@ -19,7 +19,7 @@ Frame.Parent = ScreenGui
 local uiGradient = Instance.new("UIGradient")
 uiGradient.Parent = Frame
 uiGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(100, 100, 100)),
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
     ColorSequenceKeypoint.new(1, Color3.fromRGB(40, 40, 40))
 })
 
@@ -67,6 +67,14 @@ TextBox.TextSize = 18
 TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextBox.Parent = Frame
 
+local uiGradient1 = Instance.new("UIGradient")
+uiGradient1.Parent = TextBox
+uiGradient1.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 80))
+})
+
+
 local TextBoxCorner = Instance.new("UICorner")
 TextBoxCorner.CornerRadius = UDim.new(0, 5)
 TextBoxCorner.Parent = TextBox
@@ -74,10 +82,10 @@ TextBoxCorner.Parent = TextBox
 local GetKey = Instance.new("TextButton")
 GetKey.Size = UDim2.new(0.35, 0, 0.15, 0)
 GetKey.Position = UDim2.new(0.1, 0, 0.7, 0)
-GetKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+GetKey.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 GetKey.Text = "Copy Link"
 GetKey.TextSize = 18
-GetKey.TextColor3 = Color3.fromRGB(150, 150, 150)
+GetKey.TextColor3 = Color3.fromRGB(255, 255, 255)
 GetKey.Parent = Frame
 
 local GetKeyCorner = Instance.new("UICorner")
@@ -87,10 +95,10 @@ GetKeyCorner.Parent = GetKey
 local CheckKey = Instance.new("TextButton")
 CheckKey.Size = UDim2.new(0.35, 0, 0.15, 0)
 CheckKey.Position = UDim2.new(0.55, 0, 0.7, 0)
-CheckKey.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+CheckKey.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 CheckKey.Text = "Enter"
 CheckKey.TextSize = 18
-CheckKey.TextColor3 = Color3.fromRGB(150, 150, 150)
+CheckKey.TextColor3 = Color3.fromRGB(255, 255, 255)
 CheckKey.Parent = Frame
 
 local CheckKeyCorner = Instance.new("UICorner")
