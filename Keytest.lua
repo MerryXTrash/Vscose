@@ -29,13 +29,15 @@ print(CorrectKey)
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game:GetService("CoreGui")
 
-local Frame = Instance.new("Frame")
+local Frame = Instance.new("ImageLabel")
+Frame.Image = "rbxassetid://129951410759780"
 Frame.Size = UDim2.new(0, 400, 0, 300)
 Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+Frame.BackgroundTransparency = 1
 Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame.Active = true
 Frame.Draggable = true
-Frame.Parent = ScreenGui
+Frame.Parent = ScreenGui -- Ensure this is added to PlayerGui
 
 -- Add gradient
 local uiGradient = Instance.new("UIGradient")
