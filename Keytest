@@ -19,12 +19,6 @@ local FrameCorner = Instance.new("UICorner")
 FrameCorner.CornerRadius = UDim.new(0, 10)
 FrameCorner.Parent = Frame
 
-local FrameStroke = Instance.new("UIStroke")
-FrameStroke.Thickness = 2
-FrameStroke.Color = Color3.fromRGB(138,43,226)
-FrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-FrameStroke.Parent = Frame
-
 local Close = Instance.new("TextButton")
 Close.Size = UDim2.new(0, 40, 0, 40)
 Close.Position = UDim2.new(1, -40, 0, 0)
