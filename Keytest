@@ -235,6 +235,19 @@ local function validateKey(key)
     return key == CorrectKey
 end
 
+function getgen()
+if getgenv().Antilag then
+   loadLowGraphics()
+end
+
+if getgenv().FPS then
+   createFPSCounter()
+end
+if getgenv().Fullbright then
+   fb()
+end
+end
+
 CheckKey.MouseButton1Click:Connect(function()
     local enteredKey = TextBox.Text
     if validateKey(enteredKey) then
@@ -262,16 +275,8 @@ CheckKey.MouseButton1Click:Connect(function()
         TweenOut.Completed:Wait() -- Wait for the tween to finish
         ScreenGui:Destroy()
         print("Key is correct!")
-        if getgenv().Antilag then
-        loadLowGraphics()
-        end
-        if getgenv().FPS then
-        createFPSCounter()
-        end
-        if getgenv().Fullbright then
-        fb()
+        getgen()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Protected_6271784791301568.txt"))()
-        end
     else
         TextBox.PlaceholderText = "Invalid"
         TextBox.Text = ""
