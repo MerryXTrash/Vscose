@@ -98,6 +98,19 @@ function fb()
     end
 end
 
+function getgen()
+if getgenv().Antilag then
+   loadLowGraphics()
+end
+
+if getgenv().FPS then
+   createFPSCounter()
+end
+if getgenv().Fullbright then
+   fb()
+end
+end
+
 local TweenService = game:GetService("TweenService")
 local Header = "Overflow - Version 4.0"
 local Description = "Join Discord for Key"
@@ -233,19 +246,6 @@ end)
 
 local function validateKey(key)
     return key == CorrectKey
-end
-
-function getgen()
-if getgenv().Antilag then
-   loadLowGraphics()
-end
-
-if getgenv().FPS then
-   createFPSCounter()
-end
-if getgenv().Fullbright then
-   fb()
-end
 end
 
 CheckKey.MouseButton1Click:Connect(function()
