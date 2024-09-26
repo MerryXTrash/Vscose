@@ -2,6 +2,7 @@ local TweenService = game:GetService("TweenService")
 local Header = "Overflow - Version 4.0"
 local Description = "Join Discord for Key"
 local CorrectKey = "key"
+local usedKeyFile = "usedKey.txt"
 
 local function updateKeyBasedOnDay()
     local dayOfWeek = os.date("*t").wday
@@ -21,26 +22,39 @@ local function updateKeyBasedOnDay()
     elseif dayOfWeek == 7 then
         CorrectKey = "Saturday"
     end
+
+    if hasUsedKeyBefore() then
+        local usedKey = getUsedKey()
+        if usedKey then
+            TextBox.Text = "Used Key: " .. usedKey
+            TextBox.PlaceholderText = ""
+        end
+    end
 end
 
--- ฟังก์ชันเพื่อตรวจสอบว่าผู้เล่นเคยใช้คีย์แล้วหรือยัง
 local function hasUsedKeyBefore()
-    local success, content = pcall(function()
-        return readfile("usedKey.txt") -- อ่านไฟล์
+    local success, contents = pcall(function()
+        return readfile(usedKeyFile)
     end)
-    return success and content == "true"
+    return success and contents ~= nil
 end
 
--- ฟังก์ชันเพื่อดึงคีย์ที่ถูกใช้
 local function getUsedKey()
-    local success, content = pcall(function()
-        return readfile("usedKey.txt") -- อ่านไฟล์
+    local success, contents = pcall(function()
+        return readfile(usedKeyFile)
     end)
-    return success and content or nil
+    return success and contents or nil
 end
 
-updateKeyBasedOnDay()
-print(CorrectKey)
+local function saveUsedKey(key)
+    pcall(function()
+        writefile(usedKeyFile, key)
+    end)
+end
+
+local function validateKey(key)
+    return key == CorrectKey
+end
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game:GetService("CoreGui")
@@ -53,7 +67,7 @@ Frame.BackgroundTransparency = 1
 Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame.Active = true
 Frame.Draggable = true
-Frame.Parent = ScreenGui 
+Frame.Parent = ScreenGui
 
 local Close = Instance.new("TextButton")
 Close.Size = UDim2.new(0, 40, 0, 40)
@@ -90,6 +104,7 @@ TextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
 TextBox.Position = UDim2.new(0.1, 0, 0.4, 0)
 TextBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 TextBox.PlaceholderText = "Enter Key..."
+TextBox.Text = ""
 TextBox.TextSize = 18
 TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextBox.Parent = Frame
@@ -135,24 +150,14 @@ GetKey.MouseButton1Click:Connect(function()
     setclipboard("https://discord.gg/AXvTNJdGCz")
 end)
 
-local function validateKey(key)
-    return key == CorrectKey
-end
-
 CheckKey.MouseButton1Click:Connect(function()
     local enteredKey = TextBox.Text
     if validateKey(enteredKey) then
         TextBox.PlaceholderText = "Correct"
         TextBox.Text = ""
-
-        -- Save that the key has been used
-        writefile("usedKey.txt", "true")
-
-        -- Zoom out animation for UI elements before destroying
+        saveUsedKey(enteredKey)
         local TweenOut = TweenService:Create(Frame, TweenInfo.new(0.5), {Size = UDim2.new(0, 0, 0, 0)})
         TweenOut:Play()
-
-        -- Tween for text elements
         local TweenTextOut = TweenService:Create(Title, TweenInfo.new(0.5), {TextTransparency = 1})
         local TweenInstructionsOut = TweenService:Create(Instructions, TweenInfo.new(0.5), {TextTransparency = 1})
         local TweenTextBoxOut = TweenService:Create(TextBox, TweenInfo.new(0.5), {TextTransparency = 1})
@@ -165,7 +170,7 @@ CheckKey.MouseButton1Click:Connect(function()
         TweenGetKeyOut:Play()
         TweenCheckKeyOut:Play()
 
-        TweenOut.Completed:Wait() 
+        TweenOut.Completed:Wait()
         ScreenGui:Destroy()
         print("Key is correct!")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Testk.lua"))()
@@ -178,42 +183,32 @@ CheckKey.MouseButton1Click:Connect(function()
     end
 end)
 
--- Zoom in animation when the GUI is created
+updateKeyBasedOnDay()
+
 local TweenIn = TweenService:Create(Frame, TweenInfo.new(0.5), {Size = UDim2.new(0, 400, 0, 300)})
 TweenIn:Play()
 
--- Tween for text elements on zoom in
 local TweenTitleIn = TweenService:Create(Title, TweenInfo.new(0.5), {TextTransparency = 0})
 local TweenInstructionsIn = TweenService:Create(Instructions, TweenInfo.new(0.5), {TextTransparency = 0})
 local TweenTextBoxIn = TweenService:Create(TextBox, TweenInfo.new(0.5), {TextTransparency = 0})
 local TweenGetKeyIn = TweenService:Create(GetKey, TweenInfo.new(0.5), {TextTransparency = 0})
 local TweenCheckKeyIn = TweenService:Create(CheckKey, TweenInfo.new(0.5), {TextTransparency = 0})
 
--- เริ่มต้นด้วยข้อความที่โปร่งใส
 Title.TextTransparency = 1
 Instructions.TextTransparency = 1
 TextBox.TextTransparency = 1
 GetKey.TextTransparency = 1
 CheckKey.TextTransparency = 1
 
-if hasUsedKeyBefore() then
-    local usedKey = getUsedKey()
-    if usedKey then
-        TextBox.Text = "Used Key: " .. usedKey -- แสดงคีย์ที่ถูกใช้ใน TextBox
-        TextBox.PlaceholderText = "" -- ล้าง PlaceholderText
-    end
-end
-
--- กำหนดให้ข้อความที่โปร่งใสแสดงขึ้นมา
 TweenTitleIn:Play()
 TweenInstructionsIn:Play()
 TweenTextBoxIn:Play()
 TweenGetKeyIn:Play()
 TweenCheckKeyIn:Play()
 
-TweenIn.Completed:Wait()
+Frame.Size = UDim2.new(0, 1, 0, 1)
 
--- กำหนดให้ค่า TextTransparency กลับมาเป็น 0 เพื่อให้แสดงผลได้ปกติ
+TweenIn.Completed:Wait()
 Title.TextTransparency = 0
 Instructions.TextTransparency = 0
 TextBox.TextTransparency = 0
