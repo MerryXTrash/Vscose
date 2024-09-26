@@ -16,11 +16,27 @@ local function updateKeyBasedOnDay()
         CorrectKey = "Wednesday"
     elseif dayOfWeek == 5 then
         CorrectKey = "Thursday"
-    elseif dayOfWeek == 6 then  -- Fixed typo here
+    elseif dayOfWeek == 6 then
         CorrectKey = "Friday"
     elseif dayOfWeek == 7 then
         CorrectKey = "Saturday"
     end
+end
+
+-- ฟังก์ชันเพื่อตรวจสอบว่าผู้เล่นเคยใช้คีย์แล้วหรือยัง
+local function hasUsedKeyBefore()
+    local success, content = pcall(function()
+        return readfile("usedKey.txt") -- อ่านไฟล์
+    end)
+    return success and content == "true"
+end
+
+-- ฟังก์ชันเพื่อดึงคีย์ที่ถูกใช้
+local function getUsedKey()
+    local success, content = pcall(function()
+        return readfile("usedKey.txt") -- อ่านไฟล์
+    end)
+    return success and content or nil
 end
 
 updateKeyBasedOnDay()
@@ -37,7 +53,7 @@ Frame.BackgroundTransparency = 1
 Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame.Active = true
 Frame.Draggable = true
-Frame.Parent = ScreenGui -- Ensure this is added to PlayerGui
+Frame.Parent = ScreenGui 
 
 local Close = Instance.new("TextButton")
 Close.Size = UDim2.new(0, 40, 0, 40)
@@ -74,7 +90,6 @@ TextBox.Size = UDim2.new(0.8, 0, 0.2, 0)
 TextBox.Position = UDim2.new(0.1, 0, 0.4, 0)
 TextBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 TextBox.PlaceholderText = "Enter Key..."
-TextBox.Text = ""
 TextBox.TextSize = 18
 TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextBox.Parent = Frame
@@ -130,6 +145,9 @@ CheckKey.MouseButton1Click:Connect(function()
         TextBox.PlaceholderText = "Correct"
         TextBox.Text = ""
 
+        -- Save that the key has been used
+        writefile("usedKey.txt", "true")
+
         -- Zoom out animation for UI elements before destroying
         local TweenOut = TweenService:Create(Frame, TweenInfo.new(0.5), {Size = UDim2.new(0, 0, 0, 0)})
         TweenOut:Play()
@@ -147,7 +165,7 @@ CheckKey.MouseButton1Click:Connect(function()
         TweenGetKeyOut:Play()
         TweenCheckKeyOut:Play()
 
-        TweenOut.Completed:Wait() -- Wait for the tween to finish
+        TweenOut.Completed:Wait() 
         ScreenGui:Destroy()
         print("Key is correct!")
         loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Testk.lua"))()
@@ -171,38 +189,33 @@ local TweenTextBoxIn = TweenService:Create(TextBox, TweenInfo.new(0.5), {TextTra
 local TweenGetKeyIn = TweenService:Create(GetKey, TweenInfo.new(0.5), {TextTransparency = 0})
 local TweenCheckKeyIn = TweenService:Create(CheckKey, TweenInfo.new(0.5), {TextTransparency = 0})
 
--- Start with text elements transparent
+-- เริ่มต้นด้วยข้อความที่โปร่งใส
 Title.TextTransparency = 1
 Instructions.TextTransparency = 1
 TextBox.TextTransparency = 1
 GetKey.TextTransparency = 1
 CheckKey.TextTransparency = 1
 
--- Tween for text elements on zoom in (continued)
+if hasUsedKeyBefore() then
+    local usedKey = getUsedKey()
+    if usedKey then
+        TextBox.Text = "Used Key: " .. usedKey -- แสดงคีย์ที่ถูกใช้ใน TextBox
+        TextBox.PlaceholderText = "" -- ล้าง PlaceholderText
+    end
+end
+
+-- กำหนดให้ข้อความที่โปร่งใสแสดงขึ้นมา
 TweenTitleIn:Play()
 TweenInstructionsIn:Play()
 TweenTextBoxIn:Play()
 TweenGetKeyIn:Play()
 TweenCheckKeyIn:Play()
 
--- Start with a small size for the frame
-Frame.Size = UDim2.new(0, 1, 0, 1) -- Initial size for zoom-in effect
-
--- Wait for all the tweens to complete before allowing interaction
 TweenIn.Completed:Wait()
+
+-- กำหนดให้ค่า TextTransparency กลับมาเป็น 0 เพื่อให้แสดงผลได้ปกติ
 Title.TextTransparency = 0
 Instructions.TextTransparency = 0
 TextBox.TextTransparency = 0
 GetKey.TextTransparency = 0
 CheckKey.TextTransparency = 0
-
--- Ensure the TextBox is focused when the GUI opens
-TextBox.Focus()
-
--- Additional Cleanup Function (Optional)
-local function cleanup()
-    ScreenGui:Destroy()
-end
-
--- Connect to the close button again in case it's needed
-Close.MouseButton1Click:Connect(cleanup)
