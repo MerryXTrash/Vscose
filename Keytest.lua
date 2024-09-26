@@ -3,10 +3,9 @@ local Header = "Overflow - Version 4.0"
 local Description = "Join Discord for Key"
 local CorrectKey = "key"
 local usedKeyFile = "usedKey.txt"
+local dayOfWeek = os.date("*t").wday
 
 local function updateKeyBasedOnDay()
-    local dayOfWeek = os.date("*t").wday
-
     if dayOfWeek == 1 then
         CorrectKey = "Sunday"
     elseif dayOfWeek == 2 then
@@ -34,8 +33,6 @@ end
 
 
 local function copykey()
-    local dayOfWeek = os.date("*t").wday
-
     if dayOfWeek == 1 then
         setclipboard("Sunday")
     elseif dayOfWeek == 2 then
@@ -51,6 +48,7 @@ local function copykey()
     elseif dayOfWeek == 7 then
         setclipboard("Saturday")
     end
+end
 
 local function hasUsedKeyBefore()
     local success, contents = pcall(function()
