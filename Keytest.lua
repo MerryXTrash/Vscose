@@ -32,6 +32,26 @@ local function updateKeyBasedOnDay()
     end
 end
 
+
+local function copykey()
+    local dayOfWeek = os.date("*t").wday
+
+    if dayOfWeek == 1 then
+        setclipboard("Sunday")
+    elseif dayOfWeek == 2 then
+        setclipboard("Monday")
+    elseif dayOfWeek == 3 then
+        setclipboard("Tuesday")
+    elseif dayOfWeek == 4 then
+        setclipboard("Wednesday")
+    elseif dayOfWeek == 5 then
+        setclipboard("Thursday")
+    elseif dayOfWeek == 6 then
+        setclipboard("Friday")
+    elseif dayOfWeek == 7 then
+        setclipboard("Saturday")
+    end
+
 local function hasUsedKeyBefore()
     local success, contents = pcall(function()
         return readfile(usedKeyFile)
@@ -173,6 +193,7 @@ CheckKey.MouseButton1Click:Connect(function()
         TweenOut.Completed:Wait()
         ScreenGui:Destroy()
         print("Key is correct!")
+        copykey()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/MerryXTrash/Main.lua/refs/heads/main/Testk.lua"))()
     else
         TextBox.PlaceholderText = "Invalid"
